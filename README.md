@@ -33,7 +33,7 @@ Road type: single carriageways have the most collisions and a higher proportion 
 1. Reduced the encoded feature space to 3 dimensions with UMAP, which keeps local similarity between collisions.
 2. Clustered with HDBSCAN. It needs no preset number of clusters, handles clusters of different densities and labels outliers as noise.
 3. Turned the clusters into interpretable risk levels (low, medium or high) using a composite index of cluster size and severity-weighted counts (Fatal = 3, Serious = 2, Slight = 1).
-4.Built a separate grid-based spatial risk layer from Easting/Northing coordinates, so the model gets an explicit geographic hotspot feature as well as the contextual clusters.
+4. Built a separate grid-based spatial risk layer from Easting/Northing coordinates, so the model gets an explicit geographic hotspot feature as well as the contextual clusters.
 ## 5. Severity Prediction (Supervised)
 Accuracy is misleading here because a model that always predicts Slight scores well. The project therefore optimised macro-F1 and fatal-class recall instead.
 
