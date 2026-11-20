@@ -30,17 +30,20 @@ Time: collisions peak in the rush hours (6–9 AM and 3–6 PM) and on Thursdays
 Environment: most collisions happen in fine weather and daylight, but poor lighting and rain carry a higher share of serious outcomes.
 Road type: single carriageways have the most collisions and a higher proportion of serious outcomes than roundabouts and dual carriageways.
 ## 4. Hotspot Identification (Unsupervised)
-Reduced the encoded feature space to 3 dimensions with UMAP, which keeps local similarity between collisions.
-Clustered with HDBSCAN. It needs no preset number of clusters, handles clusters of different densities and labels outliers as noise.
-Turned the clusters into interpretable risk levels (low, medium or high) using a composite index of cluster size and severity-weighted counts (Fatal = 3, Serious = 2, Slight = 1).
-Built a separate grid-based spatial risk layer from Easting/Northing coordinates, so the model gets an explicit geographic hotspot feature as well as the contextual clusters.
+1. Reduced the encoded feature space to 3 dimensions with UMAP, which keeps local similarity between collisions.
+
+2. Clustered with HDBSCAN. It needs no preset number of clusters, handles clusters of different densities and labels outliers as noise.
+
+3. Turned the clusters into interpretable risk levels (low, medium or high) using a composite index of cluster size and severity-weighted counts (Fatal = 3, Serious = 2, Slight = 1).
+
+4.Built a separate grid-based spatial risk layer from Easting/Northing coordinates, so the model gets an explicit geographic hotspot feature as well as the contextual clusters.
 ## 5. Severity Prediction (Supervised)
 Accuracy is misleading here because a model that always predicts Slight scores well. The project therefore optimised macro-F1 and fatal-class recall instead.
 
-Binary decomposition: separate detectors for Fatal and Serious, with Slight as the default class. This gives the rare classes dedicated modelling attention.
-Models: XGBoost, LightGBM and CatBoost, using target encoding for categorical features.
-Inputs: road, weather, lighting, time and vehicle features, plus the cluster-risk and spatial-risk features from Stage 4.
-Optimisation: Optuna hyperparameter search, SMOTE resampling, bagging, threshold tuning and probability fusion across models.
+1. Binary decomposition: separate detectors for Fatal and Serious, with Slight as the default class. This gives the rare classes dedicated modelling attention.
+2. Models: XGBoost, LightGBM and CatBoost, using target encoding for categorical features.
+3. Inputs: road, weather, lighting, time and vehicle features, plus the cluster-risk and spatial-risk features from Stage 4.
+4. Optimisation: Optuna hyperparameter search, SMOTE resampling, bagging, threshold tuning and probability fusion across models.
 
 The final model has an accuracy of 0.66, with class F1 scores of 0.778 (Slight), 0.345 (Serious) and 0.226 (Fatal). It correctly flagged 12 of the 47 fatal collisions in the held-out test set.
 
