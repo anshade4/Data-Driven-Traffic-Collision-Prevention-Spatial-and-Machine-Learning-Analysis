@@ -48,9 +48,9 @@ The final model has an accuracy of 0.66, with class F1 scores of 0.778 (Slight),
 What didn't work: about ten other approaches were tested and rejected, including Balanced Random Forest, Isolation Forest, One-Class SVM, an Isolation Forest + XGBoost hybrid, BorderlineSMOTE and ADASYN with XGBoost, and a Gradient Boosting classifier. Joint Optuna tuning on its own actually lowered fatal recall. The gains came from decomposing the problem and fusing models, not from tuning harder.
 
 ## Limitations
-Class imbalance: the test set has 1,446 Slight, 480 Serious and only 47 Fatal collisions. Fatal precision is still about 0.20, so the fatal-class gains are real but should be read with caution.
-Missing exposure data: traffic flow, junction geometry and detailed road-environment variables were not available. These are the most likely route to further gains.
-Single region: the results are specific to Cambridgeshire and have not been tested on other areas.
+1. Class imbalance: the test set has 1,446 Slight, 480 Serious and only 47 Fatal collisions. Fatal precision is still about 0.20, so the fatal-class gains are real but should be read with caution.
+2. Missing exposure data: traffic flow, junction geometry and detailed road-environment variables were not available. These are the most likely route to further gains.
+3. Single region: the results are specific to Cambridgeshire and have not been tested on other areas.
 ## Future Work
 Add SHAP explainability to show which conditions drive fatal-risk predictions.
 Bring in traffic-volume exposure data from DfT traffic counts.
