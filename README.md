@@ -9,12 +9,17 @@ _Research question: How can spatial clustering and machine learning be combined 
 
 ## 1. Data Integration
 Source: UK government open road-safety data (STATS19-derived) for Cambridgeshire, supplied as three linked sheets: Crashes (collision-level), Vehicles (vehicle-level) and Casualties (person-level).
+
 Confirmed the Collision Reference Number was unique and used it as the primary key.
+
 Pre-merge aggregation: a standard join would have multiplied rows because each collision has several vehicles and casualties. Instead, vehicle and casualty counts were aggregated per collision and then left-joined to the crash table. This kept all 9,870 collisions at one row per collision.
 ## 2. Data Cleaning & Validation
 Cleaned column names. Converted date and time fields to datetime64, and Speed Limit and vehicle and casualty counts to numeric.
+
 Grouped detailed categories (e.g. Weather, Lighting) into broader ones such as Daylight and Darkness: No Lighting to reduce sparsity.
+
 Excluded fields with extreme missingness, e.g. Carriageway Hazards (>90% missing).
+
 Checked value ranges (e.g. speed limits of 20–70 mph) and confirmed no duplicates after the merge.
 ## 3. Feature Engineering & Exploratory Data Analysis
 Engineered features: Hour, Day_of_Week, Month, Year, Total_Vehicles, Total_Casualties and Risk_Zone.
