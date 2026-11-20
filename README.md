@@ -7,6 +7,9 @@ Road-safety budgets are limited, so councils and police have to choose where to 
 
 _Research question: How can spatial clustering and machine learning be combined to identify high-risk collision hotspots and predict the likely severity of collisions at those locations?_
 
+## KEY Results
+![Final Findings of the Project](key results.png)
+
 ## 1. Data Integration
 1. Source: UK government open road-safety data (STATS19-derived) for Cambridgeshire, supplied as three linked sheets: Crashes (collision-level), Vehicles (vehicle-level) and Casualties (person-level).
 2. Confirmed the Collision Reference Number was unique and used it as the primary key.
