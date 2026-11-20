@@ -23,12 +23,13 @@ Excluded fields with extreme missingness, e.g. Carriageway Hazards (>90% missing
 Checked value ranges (e.g. speed limits of 20–70 mph) and confirmed no duplicates after the merge.
 ## 3. Feature Engineering & Exploratory Data Analysis
 Engineered features: Hour, Day_of_Week, Month, Year, Total_Vehicles, Total_Casualties and Risk_Zone.
+
 What the data showed:
-Severe class imbalance: about 7,000 Slight, 2,300 Serious and 200 Fatal collisions. This shaped the whole modelling strategy.
-Speed: most collisions happen in 30 mph zones, but the share of fatal collisions rises with the speed limit.
-Time: collisions peak in the rush hours (6–9 AM and 3–6 PM) and on Thursdays and Fridays. They drop sharply during the 2020 COVID-19 lockdowns and have not returned to pre-2020 levels.
-Environment: most collisions happen in fine weather and daylight, but poor lighting and rain carry a higher share of serious outcomes.
-Road type: single carriageways have the most collisions and a higher proportion of serious outcomes than roundabouts and dual carriageways.
+1. Severe class imbalance: about 7,000 Slight, 2,300 Serious and 200 Fatal collisions. This shaped the whole modelling strategy.
+2. Speed: most collisions happen in 30 mph zones, but the share of fatal collisions rises with the speed limit.
+3. Time: collisions peak in the rush hours (6–9 AM and 3–6 PM) and on Thursdays and Fridays. They drop sharply during the 2020 COVID-19 lockdowns and have not returned to pre-2020 levels.
+4. Environment: most collisions happen in fine weather and daylight, but poor lighting and rain carry a higher share of serious outcomes.
+5. Road type: single carriageways have the most collisions and a higher proportion of serious outcomes than roundabouts and dual carriageways.
 ## 4. Hotspot Identification (Unsupervised)
 1. Reduced the encoded feature space to 3 dimensions with UMAP, which keeps local similarity between collisions.
 2. Clustered with HDBSCAN. It needs no preset number of clusters, handles clusters of different densities and labels outliers as noise.
